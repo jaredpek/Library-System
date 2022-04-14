@@ -1,2 +1,1 @@
-This is my first ever Python project using Mysql and Tkinter. 
-This library programme features a Login System, a function to Borrow, Return, Extend Deadline, as well as Search for available books to borrow. 
+This is a Library Management System created using Python (Tkinter GUI) and MySQL. It features a Login and Registration System and functions to Borrow, Return, Extend and Search for books.
