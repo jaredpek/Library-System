@@ -11,7 +11,7 @@ screenWidth, screenHeight = screenResolution[0], screenResolution[1] - 65
 db = mysql.connector.connect(host="#",  # INPUT HOST NAME
                              user="#",  # INPUT MYSQL DATABASE USER NAME
                              password="#",  # INPUT MYSQL DATABASE PASSWORD
-                             database="#")  # INPUT MYSQL DATABASE NAME
+                             database="library")
 
 mycursor = db.cursor()
 
