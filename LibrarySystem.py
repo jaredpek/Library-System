@@ -5,7 +5,7 @@ import tkinter.messagebox
 import datetime
 
 objls, templs = [], []
-screenResolution = (1366, 768)  # INPUT SCREEN RESOLUTION HERE
+screenResolution = (1920, 1080)  # INPUT SCREEN RESOLUTION HERE
 screenWidth, screenHeight = screenResolution[0], screenResolution[1] - 65
 
 db = mysql.connector.connect(host="#",  # INPUT HOST NAME
@@ -44,8 +44,8 @@ def setupscreen():
 def startscreen(screen):
     screenreset()
 
-    welcomeLabel = Label(screen, text="Welcome to the Library System", font="calibri, 20", bg="grey", width=round(screenWidth / 1366 * 86), height=2)
-    welcomeLabel.place(x=0, y=0)
+    welcomeLabel = Label(screen, text="Welcome to the Library System", font="calibri, 20", bg="grey", height=2)
+    welcomeLabel.pack(side=TOP, fill=X)
     objls.append(welcomeLabel)
 
     loginButton = Button(screen, text='Login', font="calibri, 17", width=8, height=1, command=lambda: loginscreen(screen))
@@ -64,28 +64,28 @@ def startscreen(screen):
 def loginscreen(screen):
     screenreset()
 
-    instructionsLabel = Label(screen, text="Please Enter Account Login Credentials", font="calibri, 20", bg="grey", width=round(screenWidth / 1366 * 86), height=2)
-    instructionsLabel.place(x=0, y=0)
+    instructionsLabel = Label(screen, text="Please Enter Account Login Credentials", font="calibri, 20", bg="grey", height=2)
+    instructionsLabel.pack(side=TOP, fill=X)
     objls.append(instructionsLabel)
 
-    usernameLabel = Label(screen, text="Username: ", font='calibri, 15', width=12, height=1)
-    usernameLabel.place(x=screenWidth / 2 - 200, y=screenHeight / 5)
+    usernameLabel = Label(screen, text="Username: ", font='calibri, 15', width=12, height=1, anchor='w')
+    usernameLabel.place(x=screenWidth / 2 - 200, y=150)
     objls.append(usernameLabel)
     usernameEntry = StringVar()
     usernameField = Entry(screen, textvariable=usernameEntry, width=43)
-    usernameField.place(x=screenWidth / 2 - 80, y=screenHeight / 5 + 7)
+    usernameField.place(x=screenWidth / 2 - 70, y=157)
     objls.append(usernameField)
 
-    passwordLabel = Label(screen, text="Password: ", font='calibri, 15', width=12, height=1)
-    passwordLabel.place(x=screenWidth / 2 - 200, y=screenHeight / 5 + 60)
+    passwordLabel = Label(screen, text="Password: ", font='calibri, 15', width=12, height=1, anchor='w')
+    passwordLabel.place(x=screenWidth / 2 - 200, y=200)
     objls.append(passwordLabel)
     passwordEntry = StringVar()
     passwordField = Entry(screen, textvariable=passwordEntry, width=43, show="*")
-    passwordField.place(x=screenWidth / 2 - 80, y=screenHeight / 5 + 67)
+    passwordField.place(x=screenWidth / 2 - 70, y=207)
     objls.append(passwordField)
 
     loginButton = Button(screen, text='Login', font="calibri, 16", width=8, height=1, command=lambda: verifyLoginCredentials(screen, usernameEntry.get(), passwordEntry.get()))
-    loginButton.place(x=screenWidth / 2 - 40, y=screenHeight / 5 + 150)
+    loginButton.place(x=screenWidth / 2 - 55, y=250)
     objls.append(loginButton)
 
     backButton = Button(screen, text='Back', font="calibri, 16", width=7, height=1, command=lambda: startscreen(screen))
@@ -114,44 +114,44 @@ def verifyLoginCredentials(screen, usernameEntry, passwordEntry):
 def registerscreen(screen):
     screenreset()
 
-    instructionsLabel = Label(screen, text="To Register A New Account, Key In Credentials", font="calibri, 20", bg="grey", width=round(screenWidth / 1366 * 86), height=2)
-    instructionsLabel.place(x=0, y=0)
+    instructionsLabel = Label(screen, text="To Register A New Account, Key In Credentials", font="calibri, 20", bg="grey", height=2)
+    instructionsLabel.pack(side=TOP, fill=X)
     objls.append(instructionsLabel)
 
-    usernameLabel = Label(screen, text="Username: ", font='calibri, 15', width=12, height=1)
-    usernameLabel.place(x=screenWidth / 2 - 200, y=screenHeight / 5)
+    usernameLabel = Label(screen, text="Username: ", font='calibri, 15', width=12, height=1, anchor='w')
+    usernameLabel.place(x=screenWidth / 2 - 200, y=150)
     objls.append(usernameLabel)
     usernameEntry = StringVar()
     usernameField = Entry(screen, textvariable=usernameEntry, width=43)
-    usernameField.place(x=screenWidth / 2 - 80, y=screenHeight / 5 + 7)
+    usernameField.place(x=screenWidth / 2 - 70, y=157)
     objls.append(usernameField)
 
-    passwordLabel = Label(screen, text="Password: ", font='calibri, 15', width=12, height=1)
-    passwordLabel.place(x=screenWidth / 2 - 200, y=screenHeight / 5 + 60)
+    passwordLabel = Label(screen, text="Password: ", font='calibri, 15', width=12, height=1, anchor='w')
+    passwordLabel.place(x=screenWidth / 2 - 200, y=200)
     objls.append(passwordLabel)
     passwordEntry = StringVar()
     passwordField = Entry(screen, textvariable=passwordEntry, width=43, show="*")
-    passwordField.place(x=screenWidth / 2 - 80, y=screenHeight / 5 + 67)
+    passwordField.place(x=screenWidth / 2 - 70, y=207)
     objls.append(passwordField)
 
-    firstnameLabel = Label(screen, text="First Name: ", font='calibri, 15', width=12, height=1)
-    firstnameLabel.place(x=screenWidth / 2 - 200, y=screenHeight / 5 + 120)
+    firstnameLabel = Label(screen, text="First Name: ", font='calibri, 15', width=12, height=1, anchor='w')
+    firstnameLabel.place(x=screenWidth / 2 - 200, y=250)
     objls.append(firstnameLabel)
     firstnameEntry = StringVar()
     firstnameField = Entry(screen, textvariable=firstnameEntry, width=43)
-    firstnameField.place(x=screenWidth / 2 - 80, y=screenHeight / 5 + 127)
+    firstnameField.place(x=screenWidth / 2 - 70, y=257)
     objls.append(firstnameField)
 
-    lastnameLabel = Label(screen, text="Last Name: ", font='calibri, 15', width=12, height=1)
-    lastnameLabel.place(x=screenWidth / 2 - 200, y=screenHeight / 5 + 180)
+    lastnameLabel = Label(screen, text="Last Name: ", font='calibri, 15', width=12, height=1, anchor='w')
+    lastnameLabel.place(x=screenWidth / 2 - 200, y=300)
     objls.append(lastnameLabel)
     lastnameEntry = StringVar()
     lastnameField = Entry(screen, textvariable=lastnameEntry, width=43)
-    lastnameField.place(x=screenWidth / 2 - 80, y=screenHeight / 5 + 187)
+    lastnameField.place(x=screenWidth / 2 - 70, y=307)
     objls.append(lastnameField)
 
     registerButton = Button(screen, text='Register', font="calibri, 16", width=8, height=1, command=lambda: verifyRegisterCredentials(screen, usernameEntry.get(), passwordEntry.get(), firstnameEntry.get(), lastnameEntry.get()))
-    registerButton.place(x=screenWidth / 2 - 40, y=screenHeight / 5 + 350)
+    registerButton.place(x=screenWidth / 2 - 55, y=350)
     objls.append(registerButton)
 
     backButton = Button(screen, text='Back', font="calibri, 16", width=7, height=1, command=lambda: startscreen(screen))
@@ -160,7 +160,6 @@ def registerscreen(screen):
 
 
 def verifyRegisterCredentials(screen, usernameEntry, passwordEntry, firstnameEntry, lastnameEntry):
-    # print(usernameEntry, passwordEntry)
     if not usernameEntry or not passwordEntry or not firstnameEntry or not lastnameEntry:
         tkinter.messagebox.showinfo('ERROR', 'Please enter login credentials!')
         return 0
@@ -185,20 +184,20 @@ def verifyRegisterCredentials(screen, usernameEntry, passwordEntry, firstnameEnt
 def mainScreen(screen, username, fullname):
     screenreset()
 
-    timeLabel = Label(screen, text=f"Today's Date: {datetime.date.today()}", font="calibri, 10", bg="#1a1a1a", fg="white", width=round(171 * screenWidth / 1366), height=1)
-    timeLabel.place(x=0, y=0)
+    timeLabel = Label(screen, text=f"Today's Date: {datetime.date.today()}", font="calibri, 10", bg="#1a1a1a", fg="white", height=1)
+    timeLabel.pack(side=TOP, fill=X)
     objls.append(timeLabel)
 
-    welcomeLabel = Label(screen, text=f"  Welcome to the Library, {fullname}!", font="calibri, 18", bg="grey", width=round(100 * screenWidth / 1366), height=2, anchor='w')
-    welcomeLabel.place(x=0, y=22)
+    welcomeLabel = Label(screen, text=f"  Welcome to the Library, {fullname}!", font="calibri, 18", bg="grey", height=2, anchor='w')
+    welcomeLabel.pack(side=TOP, fill=X)
     objls.append(welcomeLabel)
 
     logoutButton = Button(screen, text='Logout', font="calibri, 16", width=7, height=1, command=lambda: startscreen(screen))
     logoutButton.place(x=screenWidth - 105, y=31)
     objls.append(logoutButton)
 
-    borrowedBooksLabel = Label(screen, text="Borrowed Books:", font='calibri, 15')
-    borrowedBooksLabel.place(x=15, y=90)
+    borrowedBooksLabel = Label(screen, text="  Borrowed Books:", font='calibri, 15', height=2, anchor='w')
+    borrowedBooksLabel.pack(side=TOP, fill=X)
     objls.append(borrowedBooksLabel)
 
     borrowButton = Button(screen, text="Borrow", font='calibri, 16', width=8, height=1, command=lambda: bookFunctions(screen, username, 'Borrow'))
@@ -447,6 +446,9 @@ def searchBookDisplay(screen, search):
     displayFrame.place(x=15, y=490)
     templs.append(displayFrame)
 
+    searchResultLabel = Label(displayFrame, text="Search Result:", font='calibri, 15', anchor='w')
+    searchResultLabel.pack(side=TOP, fill=X)
+
     searchBooksFrame = Frame(displayFrame)
 
     searchBooksListStyle = ttk.Style()
@@ -457,7 +459,7 @@ def searchBookDisplay(screen, search):
     searchBooksScroll = Scrollbar(searchBooksFrame)
     searchBooksScroll.pack(side=RIGHT, fill=Y)
 
-    searchBooksList = ttk.Treeview(searchBooksFrame, height=int(10 * (screenHeight / 768) ** 3 - 1), yscrollcommand=searchBooksScroll.set)
+    searchBooksList = ttk.Treeview(searchBooksFrame, height=int(10 * (screenHeight / 768) ** 3 - 3), yscrollcommand=searchBooksScroll.set)
     searchBooksList['columns'] = ('S/N', 'Title', 'Author', 'Book-ID', 'Status')
     searchBooksList.tag_configure("borrowed", background="#bd6464")  # SET SPECIFIC PARAMETERS (IF FULFIL CONDITION, HIGHLIGHT ROW)
     searchBooksScroll.config(command=searchBooksList.yview)
