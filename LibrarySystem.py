@@ -21,13 +21,7 @@ mycursor = db.cursor()
 
 
 def screenreset():
-    tempreset()
     for item in objls:
-        item.destroy()
-
-
-def tempreset():
-    for item in templs:
         item.destroy()
 
 
@@ -49,15 +43,15 @@ def startscreen(screen):
     objls.append(welcomeLabel)
 
     loginButton = Button(screen, text='Login', font="calibri, 17", width=8, height=1, command=lambda: loginscreen(screen))
-    loginButton.place(x=screenWidth / 2 - 40, y=screenHeight / 5)
+    loginButton.pack(pady=(60, 0))
     objls.append(loginButton)
 
     registerButton = Button(screen, text='Register', font="calibri, 17", width=8, height=1, command=lambda: registerscreen(screen))
-    registerButton.place(x=screenWidth / 2 - 40, y=screenHeight / 5 + 100)
+    registerButton.pack(pady=(40, 0))
     objls.append(registerButton)
 
     quitButton = Button(screen, text='Quit', font="calibri, 16", width=7, height=1, command=lambda: exit())
-    quitButton.place(x=screenWidth - 105, y=screenHeight - 50)
+    quitButton.pack(side=BOTTOM, anchor='e', padx=10, pady=10)
     objls.append(quitButton)
 
 
@@ -68,33 +62,32 @@ def loginscreen(screen):
     instructionsLabel.pack(side=TOP, fill=X)
     objls.append(instructionsLabel)
 
-    usernameLabel = Label(screen, text="Username: ", font='calibri, 15', width=12, height=1, anchor='w')
-    usernameLabel.place(x=screenWidth / 2 - 200, y=150)
-    objls.append(usernameLabel)
+    credFrame = Frame(screen)
+    objls.append(credFrame)
+
+    usernameLabel = Label(credFrame, text="Username: ", font='calibri, 15', width=12, height=1, anchor='w')
+    usernameLabel.pack(side=TOP, anchor='w')
     usernameEntry = StringVar()
-    usernameField = Entry(screen, textvariable=usernameEntry, width=43)
-    usernameField.place(x=screenWidth / 2 - 70, y=157)
-    objls.append(usernameField)
+    usernameField = Entry(credFrame, textvariable=usernameEntry, width=70)
+    usernameField.pack(side=TOP, anchor='e', pady=(0, 30))
 
-    passwordLabel = Label(screen, text="Password: ", font='calibri, 15', width=12, height=1, anchor='w')
-    passwordLabel.place(x=screenWidth / 2 - 200, y=200)
-    objls.append(passwordLabel)
+    passwordLabel = Label(credFrame, text="Password: ", font='calibri, 15', width=12, height=1, anchor='w')
+    passwordLabel.pack(side=TOP, anchor='w')
     passwordEntry = StringVar()
-    passwordField = Entry(screen, textvariable=passwordEntry, width=43, show="*")
-    passwordField.place(x=screenWidth / 2 - 70, y=207)
-    objls.append(passwordField)
+    passwordField = Entry(credFrame, textvariable=passwordEntry, width=70, show="*")
+    passwordField.pack(side=TOP, anchor='e', pady=(0, 30))
 
-    loginButton = Button(screen, text='Login', font="calibri, 16", width=8, height=1, command=lambda: verifyLoginCredentials(screen, usernameEntry.get(), passwordEntry.get()))
-    loginButton.place(x=screenWidth / 2 - 55, y=250)
-    objls.append(loginButton)
+    loginButton = Button(credFrame, text='Login', font="calibri, 16", width=8, height=1, command=lambda: verifyLoginCredentials(screen, usernameEntry.get(), passwordEntry.get()))
+    loginButton.pack(side=BOTTOM)
+
+    credFrame.pack(pady=(40, 0))
 
     backButton = Button(screen, text='Back', font="calibri, 16", width=7, height=1, command=lambda: startscreen(screen))
-    backButton.place(x=screenWidth - 105, y=screenHeight - 50)
+    backButton.pack(side=BOTTOM, anchor='e', padx=10, pady=10)
     objls.append(backButton)
 
 
 def verifyLoginCredentials(screen, usernameEntry, passwordEntry):
-    # print(usernameEntry, passwordEntry)
     if not usernameEntry or not passwordEntry:
         tkinter.messagebox.showinfo('ERROR', 'Please enter login credentials!')
         return 0
@@ -118,44 +111,40 @@ def registerscreen(screen):
     instructionsLabel.pack(side=TOP, fill=X)
     objls.append(instructionsLabel)
 
-    usernameLabel = Label(screen, text="Username: ", font='calibri, 15', width=12, height=1, anchor='w')
-    usernameLabel.place(x=screenWidth / 2 - 200, y=150)
-    objls.append(usernameLabel)
+    credFrame = Frame(screen)
+    objls.append(credFrame)
+
+    usernameLabel = Label(credFrame, text="Username: ", font='calibri, 15', width=12, height=1, anchor='w')
+    usernameLabel.pack(side=TOP, anchor='w')
     usernameEntry = StringVar()
-    usernameField = Entry(screen, textvariable=usernameEntry, width=43)
-    usernameField.place(x=screenWidth / 2 - 70, y=157)
-    objls.append(usernameField)
+    usernameField = Entry(credFrame, textvariable=usernameEntry, width=70)
+    usernameField.pack(side=TOP, anchor='e', pady=(0, 30))
 
-    passwordLabel = Label(screen, text="Password: ", font='calibri, 15', width=12, height=1, anchor='w')
-    passwordLabel.place(x=screenWidth / 2 - 200, y=200)
-    objls.append(passwordLabel)
+    passwordLabel = Label(credFrame, text="Password: ", font='calibri, 15', width=12, height=1, anchor='w')
+    passwordLabel.pack(side=TOP, anchor='w')
     passwordEntry = StringVar()
-    passwordField = Entry(screen, textvariable=passwordEntry, width=43, show="*")
-    passwordField.place(x=screenWidth / 2 - 70, y=207)
-    objls.append(passwordField)
+    passwordField = Entry(credFrame, textvariable=passwordEntry, width=70, show="*")
+    passwordField.pack(side=TOP, anchor='e', pady=(0, 30))
 
-    firstnameLabel = Label(screen, text="First Name: ", font='calibri, 15', width=12, height=1, anchor='w')
-    firstnameLabel.place(x=screenWidth / 2 - 200, y=250)
-    objls.append(firstnameLabel)
+    firstnameLabel = Label(credFrame, text="First Name: ", font='calibri, 15', width=12, height=1, anchor='w')
+    firstnameLabel.pack(side=TOP, anchor='w')
     firstnameEntry = StringVar()
-    firstnameField = Entry(screen, textvariable=firstnameEntry, width=43)
-    firstnameField.place(x=screenWidth / 2 - 70, y=257)
-    objls.append(firstnameField)
+    firstnameField = Entry(credFrame, textvariable=firstnameEntry, width=70)
+    firstnameField.pack(side=TOP, anchor='e', pady=(0, 30))
 
-    lastnameLabel = Label(screen, text="Last Name: ", font='calibri, 15', width=12, height=1, anchor='w')
-    lastnameLabel.place(x=screenWidth / 2 - 200, y=300)
-    objls.append(lastnameLabel)
+    lastnameLabel = Label(credFrame, text="Last Name: ", font='calibri, 15', width=12, height=1, anchor='w')
+    lastnameLabel.pack(side=TOP, anchor='w')
     lastnameEntry = StringVar()
-    lastnameField = Entry(screen, textvariable=lastnameEntry, width=43)
-    lastnameField.place(x=screenWidth / 2 - 70, y=307)
-    objls.append(lastnameField)
+    lastnameField = Entry(credFrame, textvariable=lastnameEntry, width=70)
+    lastnameField.pack(side=TOP, anchor='e', pady=(0, 30))
 
-    registerButton = Button(screen, text='Register', font="calibri, 16", width=8, height=1, command=lambda: verifyRegisterCredentials(screen, usernameEntry.get(), passwordEntry.get(), firstnameEntry.get(), lastnameEntry.get()))
-    registerButton.place(x=screenWidth / 2 - 55, y=350)
-    objls.append(registerButton)
+    registerButton = Button(credFrame, text='Register', font="calibri, 16", width=8, height=1, command=lambda: verifyRegisterCredentials(screen, usernameEntry.get(), passwordEntry.get(), firstnameEntry.get(), lastnameEntry.get()))
+    registerButton.pack(side=BOTTOM)
+
+    credFrame.pack(pady=(40, 0))
 
     backButton = Button(screen, text='Back', font="calibri, 16", width=7, height=1, command=lambda: startscreen(screen))
-    backButton.place(x=screenWidth - 105, y=screenHeight - 50)
+    backButton.pack(side=BOTTOM, anchor='e', padx=10, pady=10)
     objls.append(backButton)
 
 
@@ -193,57 +182,53 @@ def mainScreen(screen, username, fullname):
     objls.append(welcomeLabel)
 
     logoutButton = Button(screen, text='Logout', font="calibri, 16", width=7, height=1, command=lambda: startscreen(screen))
-    logoutButton.place(x=screenWidth - 105, y=31)
+    logoutButton.pack(side=BOTTOM, anchor='e', padx=10, pady=10)
     objls.append(logoutButton)
 
-    borrowedBooksLabel = Label(screen, text="  Borrowed Books:", font='calibri, 15', height=2, anchor='w')
-    borrowedBooksLabel.pack(side=TOP, fill=X)
-    objls.append(borrowedBooksLabel)
-
-    borrowButton = Button(screen, text="Borrow", font='calibri, 16', width=8, height=1, command=lambda: bookFunctions(screen, username, 'Borrow'))
-    borrowButton.place(x=30, y=350)
+    borrowButton = Button(screen, text="Borrow", font='calibri, 16', width=8, height=1, command=lambda: bookFunctions(screen, username, 'Borrow', fullname))
+    borrowButton.place(x=30, y=320)
     objls.append(borrowButton)
 
-    returnButton = Button(screen, text="Return", font='calibri, 16', width=8, height=1, command=lambda: bookFunctions(screen, username, 'Return'))
-    returnButton.place(x=200, y=350)
+    returnButton = Button(screen, text="Return", font='calibri, 16', width=8, height=1, command=lambda: bookFunctions(screen, username, 'Return', fullname))
+    returnButton.place(x=200, y=320)
     objls.append(returnButton)
 
-    extendButton = Button(screen, text="Extend", font='calibri, 16', width=8, height=1, command=lambda: bookFunctions(screen, username, 'Extend'))
-    extendButton.place(x=370, y=350)
+    extendButton = Button(screen, text="Extend", font='calibri, 16', width=8, height=1, command=lambda: bookFunctions(screen, username, 'Extend', fullname))
+    extendButton.place(x=370, y=320)
     objls.append(extendButton)
 
-    searchButton = Button(screen, text="Search", font='calibri, 16', width=8, height=1, command=lambda: searchBooks(screen, username))
-    searchButton.place(x=540, y=350)
+    searchButton = Button(screen, text="Search", font='calibri, 16', width=8, height=1, command=lambda: searchBooks(screen, username, fullname))
+    searchButton.place(x=540, y=320)
     objls.append(searchButton)
 
     borrowedBookDisplay(screen, username)
 
-    dueInstLabel = Label(screen, text="*Note: Books that are OVERDUE will be highlighted in RED, please return them (if applicable) before you borrow any other books.", font="calibri, 8", height=1, anchor='w')
-    dueInstLabel.place(x=15, y=320)
-    objls.append(dueInstLabel)
-
 
 def borrowedBookDisplay(screen, username):
     borrowedBooksFrame = Frame(screen)
-    borrowedBooksFrame.place(x=15, y=120)
-    templs.append(borrowedBooksFrame)
+    borrowedBooksFrame.pack(fill=X, pady=(5, 0), padx=15)
+    objls.append(borrowedBooksFrame)
+
+    borrowedBooksLabel = Label(borrowedBooksFrame, text="Borrowed Books:", font='calibri, 15', height=1, anchor='w')
+    borrowedBooksLabel.pack(side=TOP, anchor='w')
+    objls.append(borrowedBooksLabel)
 
     borrowedBooksListStyle = ttk.Style()
     borrowedBooksListStyle.theme_use("default")  # SELECT DEFAULT THEME
     borrowedBooksListStyle.configure("Treeview", background="white", foreground="black", rowheight=20, fieldbackground="white")  # CONFIGURE BOOKLIST STYLE
     borrowedBooksListStyle.map("Treeview", background=[("selected", "#4e96c7")])  # SET BOOKLIST STYLE PARAMETERS (WHEN SELECTED, WHAT COLOUR IS COLUMN)
 
-    borrowedBooksList = ttk.Treeview(borrowedBooksFrame, height=9)
+    borrowedBooksList = ttk.Treeview(borrowedBooksFrame, height=8)
     borrowedBooksList['columns'] = ('S/N', 'Title', 'Author', 'Book-ID', 'Borrow Date', 'Due Date')
     borrowedBooksList.tag_configure("overdue", background="#bd6464")  # SET SPECIFIC PARAMETERS (IF FULFIL CONDITION, HIGHLIGHT ROW)
 
     borrowedBooksList.column("#0", width=0, stretch=NO)
-    borrowedBooksList.column("S/N", anchor=CENTER, width=int(60 / 1366 * screenWidth))
+    borrowedBooksList.column("S/N", anchor=CENTER, width=int(40 / 1366 * screenWidth))
     borrowedBooksList.column("Title", anchor=CENTER, width=int(420 / 1366 * screenWidth))
     borrowedBooksList.column("Author", anchor=CENTER, width=int(250 / 1366 * screenWidth))
     borrowedBooksList.column("Book-ID", anchor=CENTER, width=int(200 / 1366 * screenWidth))
-    borrowedBooksList.column("Borrow Date", anchor=CENTER, width=int(200 / 1366 * screenWidth))
-    borrowedBooksList.column("Due Date", anchor=CENTER, width=int(200 / 1366 * screenWidth))
+    borrowedBooksList.column("Borrow Date", anchor=CENTER, width=int(210 / 1366 * screenWidth))
+    borrowedBooksList.column("Due Date", anchor=CENTER, width=int(210 / 1366 * screenWidth))
 
     borrowedBooksList.heading("#0", text="", anchor=CENTER)
     borrowedBooksList.heading("S/N", text="S/N", anchor=CENTER)
@@ -261,12 +246,15 @@ def borrowedBookDisplay(screen, username):
             tagDetails = "overdue"
         borrowedBooksList.insert(parent='', index='end', iid=f'{i}', text='', values=(f'{i + 1}', f'{search[i][2]}', f'{search[i][3]}', f'{search[i][1]}', f'{search[i][-2]}', f'{search[i][-1]}'), tags=(tagDetails,))
 
-    borrowedBooksList.pack()
+    borrowedBooksList.pack(fill=X)
+
+    dueInstLabel = Label(borrowedBooksFrame, text="*Note: Books that are OVERDUE will be highlighted in RED, please return them (if applicable) before you borrow any other books.", font="calibri, 8", height=1, anchor='w')
+    dueInstLabel.pack(side=BOTTOM, anchor='w')
 
 
-def bookFunctions(screen, username, function):
-    tempreset()
-    borrowedBookDisplay(screen, username)
+def bookFunctions(screen, username, function, fullname):
+    screenreset()
+    mainScreen(screen, username, fullname)
 
     if function == "Borrow":
         mycursor.execute(f'select count(*) from bookinfo where borrowedby = "{username}"')
@@ -281,24 +269,24 @@ def bookFunctions(screen, username, function):
             return 0
 
     instLabel = Label(screen, text=f"Enter Book ID To {function} Book", width=50, height=1, font='calibri, 14', anchor='w')
-    instLabel.place(x=30, y=400)
-    templs.append(instLabel)
+    instLabel.place(x=30, y=370)
+    objls.append(instLabel)
 
     bookIDLabel = Label(screen, text="Book ID: ", width=10, height=1, font='calibri, 14', anchor='w')
-    bookIDLabel.place(x=30, y=430)
-    templs.append(bookIDLabel)
+    bookIDLabel.place(x=30, y=400)
+    objls.append(bookIDLabel)
 
     bookIdEntry = StringVar()
     bookIdField = Entry(screen, textvariable=bookIdEntry, width=50)
-    bookIdField.place(x=125, y=435)
-    templs.append(bookIdField)
+    bookIdField.place(x=125, y=405)
+    objls.append(bookIdField)
 
-    confirmButton = Button(screen, text=f"Confirm {function}", width=14, height=1, font='calibri, 10', command=lambda: verifyFunction(screen, username, function, bookIdEntry.get()))
-    confirmButton.place(x=450, y=430)
-    templs.append(confirmButton)
+    confirmButton = Button(screen, text=f"Confirm {function}", width=14, height=1, font='calibri, 10', command=lambda: verifyFunction(screen, username, function, bookIdEntry.get(), fullname))
+    confirmButton.place(x=450, y=400)
+    objls.append(confirmButton)
 
 
-def verifyFunction(screen, username, function, bookIdEntry):
+def verifyFunction(screen, username, function, bookIdEntry, fullname):
     if function == "Borrow":
         mycursor.execute(f'select * from bookinfo where bookid = "{bookIdEntry.upper()}" and state = "AVAILABLE"')
         search = mycursor.fetchall()
@@ -319,7 +307,7 @@ def verifyFunction(screen, username, function, bookIdEntry):
                 mycursor.execute(f'select * from bookinfo where bookid = "{bookIdEntry.upper()}" and state = "BORROWED" and borrowedby = "{username}"')
                 search = mycursor.fetchall()
                 tkinter.messagebox.showinfo('SUCCESS', f'You have successfully borrowed {search[0][2]}, please return the book by {search[0][-1]}.')
-                bookFunctions(screen, username, 'Borrow')
+                bookFunctions(screen, username, 'Borrow', fullname)
                 return 0
         else:
             mycursor.execute(f'select title, state, borrowedby from bookinfo where bookid = "{bookIdEntry}"')
@@ -340,7 +328,7 @@ def verifyFunction(screen, username, function, bookIdEntry):
             mycursor.execute(f'select * from bookinfo where bookid = "{bookIdEntry.upper()}" and state = "AVAILABLE"')
             search = mycursor.fetchall()
             tkinter.messagebox.showinfo('SUCCESS', f'You have successfully returned {search[0][2]}.')
-            bookFunctions(screen, username, 'Return')
+            bookFunctions(screen, username, 'Return', fullname)
             return 0
         else:
             mycursor.execute(f'select title, state, borrowedby from bookinfo where bookid = "{bookIdEntry}"')
@@ -366,7 +354,7 @@ def verifyFunction(screen, username, function, bookIdEntry):
                 mycursor.execute(f'select * from bookinfo where bookid = "{bookIdEntry.upper()}" and state = "BORROWED" and borrowedby = "{username}"')
                 search = mycursor.fetchall()
                 tkinter.messagebox.showinfo('SUCCESS', f'You have successfully extended the deadline for {search[0][2]}. Please return {search[0][2]} by {search[0][-1]}.')
-                bookFunctions(screen, username, 'Extend')
+                bookFunctions(screen, username, 'Extend', fullname)
                 return 0
         else:
             mycursor.execute(f'select title, state, borrowedby from bookinfo where bookid = "{bookIdEntry}"')
@@ -379,44 +367,48 @@ def verifyFunction(screen, username, function, bookIdEntry):
                 return 0
 
 
-def searchBooks(screen, username):
-    tempreset()
-    borrowedBookDisplay(screen, username)
+def searchBooks(screen, username, fullname):
+    screenreset()
+    mainScreen(screen, username, fullname)
 
     instLabel = Label(screen, text=f"Enter Text To Search: ", width=50, height=1, font='calibri, 14', anchor='w')
-    instLabel.place(x=30, y=400)
-    templs.append(instLabel)
+    instLabel.place(x=30, y=370)
+    objls.append(instLabel)
 
     bookIDLabel = Label(screen, text="Search: ", width=10, height=1, font='calibri, 14', anchor='w')
-    bookIDLabel.place(x=30, y=430)
-    templs.append(bookIDLabel)
+    bookIDLabel.place(x=30, y=400)
+    objls.append(bookIDLabel)
 
     textEntry = StringVar()
     bookIdField = Entry(screen, textvariable=textEntry, width=50)
-    bookIdField.place(x=125, y=435)
-    templs.append(bookIdField)
+    bookIdField.place(x=125, y=405)
+    objls.append(bookIdField)
 
     titleCheck = IntVar()
     searchTitleChkBox = Checkbutton(screen, text="Title", font='calibri, 11', variable=titleCheck)
-    searchTitleChkBox.place(x=30, y=460)
-    templs.append(searchTitleChkBox)
+    searchTitleChkBox.place(x=30, y=430)
+    objls.append(searchTitleChkBox)
 
     authorCheck = IntVar()
     searchAuthorChkBox = Checkbutton(screen, text="Author", font='calibri, 11', variable=authorCheck)
-    searchAuthorChkBox.place(x=110, y=460)
-    templs.append(searchAuthorChkBox)
+    searchAuthorChkBox.place(x=110, y=430)
+    objls.append(searchAuthorChkBox)
 
     bookidCheck = IntVar()
     searchBookIdChkBox = Checkbutton(screen, text="Book-ID", font='calibri, 11', variable=bookidCheck)
-    searchBookIdChkBox.place(x=200, y=460)
-    templs.append(searchBookIdChkBox)
+    searchBookIdChkBox.place(x=200, y=430)
+    objls.append(searchBookIdChkBox)
 
-    confirmButton = Button(screen, text=f"Confirm Search", width=14, height=1, font='calibri, 10', command=lambda: verifySearch(screen, textEntry.get(), titleCheck.get(), authorCheck.get(), bookidCheck.get()))
-    confirmButton.place(x=450, y=430)
-    templs.append(confirmButton)
+    confirmButton = Button(screen, text=f"Confirm Search", width=14, height=1, font='calibri, 10', command=lambda: verifySearch(screen, textEntry.get(), titleCheck.get(), authorCheck.get(), bookidCheck.get(), username, fullname))
+    confirmButton.place(x=450, y=400)
+    objls.append(confirmButton)
 
 
-def verifySearch(screen, textEntry, titleCheck, authorCheck, bookidCheck):
+def verifySearch(screen, textEntry, titleCheck, authorCheck, bookidCheck, username, fullname):
+    screenreset()
+    mainScreen(screen, username, fullname)
+    searchBooks(screen, username, fullname)
+
     conditions = [titleCheck, authorCheck, bookidCheck]
     conditionString = ''
     for i in range(len(conditions)):
@@ -435,6 +427,9 @@ def verifySearch(screen, textEntry, titleCheck, authorCheck, bookidCheck):
     try:
         mycursor.execute(f'select title, author, bookid, state from bookinfo where {conditionString} order by bookid')
         search = mycursor.fetchall()
+        borrowedInstLabel = Label(screen, text="*Note: Books that are BORROWED will be highlighted in RED and are currently unavailable.", font="calibri, 8", height=1, anchor='w')
+        borrowedInstLabel.pack(side=BOTTOM, anchor='w', padx=15)
+        objls.append(borrowedInstLabel)
         searchBookDisplay(screen, search)
         return 0
     except:
@@ -443,8 +438,8 @@ def verifySearch(screen, textEntry, titleCheck, authorCheck, bookidCheck):
 
 def searchBookDisplay(screen, search):
     displayFrame = Frame(screen)
-    displayFrame.place(x=15, y=490)
-    templs.append(displayFrame)
+    displayFrame.pack(fill=X, pady=(140, 0), padx=15)
+    objls.append(displayFrame)
 
     searchResultLabel = Label(displayFrame, text="Search Result:", font='calibri, 15', anchor='w')
     searchResultLabel.pack(side=TOP, fill=X)
@@ -459,7 +454,7 @@ def searchBookDisplay(screen, search):
     searchBooksScroll = Scrollbar(searchBooksFrame)
     searchBooksScroll.pack(side=RIGHT, fill=Y)
 
-    searchBooksList = ttk.Treeview(searchBooksFrame, height=int(10 * (screenHeight / 768) ** 3 - 3), yscrollcommand=searchBooksScroll.set)
+    searchBooksList = ttk.Treeview(searchBooksFrame, yscrollcommand=searchBooksScroll.set, height=50)
     searchBooksList['columns'] = ('S/N', 'Title', 'Author', 'Book-ID', 'Status')
     searchBooksList.tag_configure("borrowed", background="#bd6464")  # SET SPECIFIC PARAMETERS (IF FULFIL CONDITION, HIGHLIGHT ROW)
     searchBooksScroll.config(command=searchBooksList.yview)
@@ -484,11 +479,8 @@ def searchBookDisplay(screen, search):
             tagDetails = "borrowed"
         searchBooksList.insert(parent='', index='end', iid=f'{i}', text='', values=(f'{i + 1}', f'{search[i][0]}', f'{search[i][1]}', f'{search[i][2]}', f'{search[i][3]}'), tags=(tagDetails,))
 
-    searchBooksList.pack()
-    searchBooksFrame.pack()
-
-    borrowedInstLabel = Label(displayFrame, text="*Note: Books that are BORROWED will be highlighted in RED and are currently unavailable.", font="calibri, 8", height=1, anchor='w')
-    borrowedInstLabel.pack(side=LEFT)
+    searchBooksList.pack(fill=BOTH)
+    searchBooksFrame.pack(fill=X)
 
 
 if __name__ == "__main__":
