@@ -4,7 +4,7 @@ from tkinter import ttk
 import tkinter.messagebox
 import datetime
 
-objls, templs = [], []
+objls = []
 screenResolution = (1920, 1080)  # INPUT SCREEN RESOLUTION HERE
 screenWidth, screenHeight = screenResolution[0], screenResolution[1] - 65
 
